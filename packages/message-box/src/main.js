@@ -106,6 +106,12 @@ const showNextMsg = () => {
       } else {
         delete instance.$slots.default;
       }
+      if (typeof instance.footer === 'function') {
+        instance.$slots.footer = [instance.footer(instance.handleAction)];
+        instance.footer = null;
+      } else {
+        delete instance.$slots.footer;
+      }
       ['modal', 'showClose', 'closeOnClickModal', 'closeOnPressEscape', 'closeOnHashChange'].forEach(prop => {
         if (instance[prop] === undefined) {
           instance[prop] = true;
