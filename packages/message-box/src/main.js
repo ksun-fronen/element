@@ -100,6 +100,12 @@ const showNextMsg = () => {
         oldCb(action, instance);
         showNextMsg();
       };
+      if (typeof instance.header === 'function') {
+        instance.$slots.header = [instance.header(instance.handleAction)];
+        instance.header = null;
+      } else {
+        delete instance.$slots.header;
+      }
       if (isVNode(instance.message)) {
         instance.$slots.default = [instance.message];
         instance.message = null;

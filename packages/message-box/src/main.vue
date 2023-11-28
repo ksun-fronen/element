@@ -9,7 +9,8 @@
       aria-modal="true"
       :aria-label="title || 'dialog'">
       <div class="el-message-box" :class="[customClass, center && 'el-message-box--center']">
-        <div class="el-message-box__header" v-if="title !== null">
+        <slot name="header">
+          <div class="el-message-box__header" v-if="title !== null">
           <div class="el-message-box__title">
             <div
               :class="['el-message-box__status', icon]"
@@ -27,6 +28,7 @@
             <i class="el-message-box__close el-icon-close"></i>
           </button>
         </div>
+        </slot>
         <div class="el-message-box__content">
           <div class="el-message-box__container">
             <div
@@ -303,6 +305,7 @@
         title: undefined,
         message: '',
         footer: '',
+        header: '',
         type: '',
         iconClass: '',
         customClass: '',
