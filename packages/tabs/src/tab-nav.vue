@@ -114,6 +114,11 @@
       },
       update() {
         if (!this.$refs.nav) return;
+        const $el = this.rootTabs.$el;
+        const clearValue = $el.style.clear;
+
+        $el.style.clear = 'both';
+
         const sizeName = this.sizeName;
         const navSize = this.$refs.nav[`offset${firstUpperCase(sizeName)}`];
         const containerSize = this.$refs.navScroll[`offset${firstUpperCase(sizeName)}`];
@@ -133,6 +138,14 @@
             this.navOffset = 0;
           }
         }
+
+        requestAnimationFrame(() => {
+          if (clearValue) {
+            $el.style.clear = clearValue;
+          } else {
+            $el.style.clear = null;
+          }
+        });
       },
       changeTab(e) {
         const keyCode = e.keyCode;

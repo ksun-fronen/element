@@ -273,6 +273,8 @@
         </el-button-group>;
       } else {
         triggerElm = this.$slots.default;
+
+        if (!triggerElm) return;
         const vnodeData = triggerElm[0].data || {};
         let { attrs = {} } = vnodeData;
         if (disabled && !attrs.disabled) {

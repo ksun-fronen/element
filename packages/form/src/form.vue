@@ -21,6 +21,7 @@
     },
 
     props: {
+      buttonDisabled: Boolean,
       model: Object,
       rules: Object,
       labelPosition: String,
