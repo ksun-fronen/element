@@ -1,7 +1,7 @@
 <template>
   <div
     class="el-tab-pane"
-    v-if="(!lazy || loaded) || active"
+    v-if="(!regularLazy && (!lazy || loaded)) || active"
     v-show="active"
     role="tabpanel"
     :aria-hidden="!active"
@@ -18,6 +18,7 @@
     componentName: 'ElTabPane',
 
     props: {
+      regularLazy: Boolean,
       label: String,
       labelContent: Function,
       name: String,

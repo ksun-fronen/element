@@ -15,6 +15,9 @@ Object.keys(Components).forEach(function(key) {
 externals['element-ui/src/locale'] = 'element-ui/lib/locale';
 utilsList.forEach(function(file) {
   file = path.basename(file, '.js');
+  if (file.includes('/popup/')) {
+    return;
+  }
   externals[`element-ui/src/utils/${file}`] = `element-ui/lib/utils/${file}`;
 });
 mixinsList.forEach(function(file) {
