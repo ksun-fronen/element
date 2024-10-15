@@ -10,6 +10,7 @@ export default {
   mixins: [Popper],
 
   props: {
+    width: {},
     openDelay: {
       type: Number,
       default: 0
@@ -77,6 +78,10 @@ export default {
 
   render(h) {
     if (this.popperVM) {
+      const style = {};
+      if (this.width) {
+        style.width = this.width + 'px';
+      }
       this.popperVM.node = (
         <transition
           name={ this.transition }
@@ -87,6 +92,7 @@ export default {
             ref="popper"
             role="tooltip"
             id={this.tooltipId}
+            style={style}
             aria-hidden={ (this.disabled || !this.showPopper) ? 'true' : 'false' }
             v-show={!this.disabled && this.showPopper}
             class={
